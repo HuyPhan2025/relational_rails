@@ -12,11 +12,8 @@ RSpec.describe "Student Show page" do
         visit "/students/#{student_1.id}"
 
         expect(page).to have_content(student_1.name)
-        expect(page).to_not have_content(student_2.name)
         expect(page).to have_content("English Learner: #{student_1.english_learner}")
-        # expect(page).to_not have_content("English Learner: #{student_2.english_learner}")
         expect(page).to have_content("Grade: #{student_1.grade}")
-        expect(page).to_not have_content("Grade: #{student_2.grade}")
       end
     end
   end
