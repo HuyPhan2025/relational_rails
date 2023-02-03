@@ -9,11 +9,11 @@ School.destroy_all
 Student.destroy_all
 
 #schools
-school_1 = School.create!(name: "Dry Creek", esl_program: false, tuition: 1000)
-school_2 = School.create!(name: "Walnut Hill", esl_program: true, tuition: 1500)
+school_1 = School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour)
+school_2 = School.create!(name: "Walnut Hill", esl_program: true, tuition: 1500,created_at: Time.now - 2.hour)
 school_3 = School.create!(name: "Hogwart", esl_program: true, tuition: 2500)
 
-#students_school_1
+#students
 student_1 = Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)
 student_2 = Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)
 student_3 = Student.create!(school: school_1, name: "Kim Lee", english_learner: true, grade: 1)
