@@ -1,5 +1,6 @@
 <h1>All Schools</h1>
 
 <% @schools.each do |school| %>
-  <h3><%= school.name %></h3>
+  <p><strong><%= school.name %></strong> <%= school.created_at %></p>
+  <p><%= school.id %></p>
 <% end %>
