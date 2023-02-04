@@ -18,6 +18,18 @@ RSpec.describe 'Student Index page' do
         expect(page).to have_content("Grade: #{student_1.grade}")
         expect(page).to have_content("Grade: #{student_2.grade}")
       end
+
+      it "see a link at the top of the page that takes me to the Student Index" do
+        visit "/students/"
+
+        expect(page).to have_link(href="/students">Student Index)
+      end
+
+      it "see a link at the top of the page that takes me to the School Index" do
+        visit "/students/"
+
+        expect(page).to have_link(href="/schools">School Index)
+      end
     end
   end
 end

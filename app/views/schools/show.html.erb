@@ -1,7 +1,11 @@
-<a href="/schools">School Index</a>
+<ul>
+  <li><a href="/schools">School Index</a></li>
+  <li><a href="/schools/<%=@school.id%>/students">School Student</a></li>
+  <li><a href="/students">Student Index</a></li>
+</ul>
 
 <h1><%= @school.name %></h1>
-
+app/views/schools/index.html.erb
 <p>ESL Program: <%= @school.esl_program %></p>
 
 <p>Tuition: <%= @school.tuition %></p>
