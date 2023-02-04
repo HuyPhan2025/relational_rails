@@ -30,49 +30,49 @@ RSpec.describe 'schools show page' do
     end
 
     describe "user story 8" do
+      let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
+
+      let!(:student_1) {Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)}
+      let!(:student_2) {Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)}
+      let!(:student_3) {Student.create!(school: school_1, name: "Kim Lee", english_learner: true, grade: 1)}
       describe "When I visit '/schools'" do
         it "see a link at the top of the page that takes me to the Student Index" do
-          let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
-  
-          let!(:student_1) {Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)}
-          let!(:student_2) {Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)}
-          let!(:student_3) {Student.create!(school: school_1, name: "Kim Lee", english_learner: true, grade: 1)}
 
           visit "/schools/#{school_1.id}"
   
-          expect(page).to have_link(href="/students">Student Index)
+          expect(page).to have_link(href:"/students")
         end
       end   
     end
 
     describe "user story 9" do
+      let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
+
+      let!(:student_1) {Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)}
+      let!(:student_2) {Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)}
+      let!(:student_3) {Student.create!(school: school_1, name: "Kim Lee", english_learner: true, grade: 1)}
       describe "When I visit '/schools'" do
         it "see a link at the top of the page that takes me to the School Index" do
-          let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
-  
-          let!(:student_1) {Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)}
-          let!(:student_2) {Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)}
-          let!(:student_3) {Student.create!(school: school_1, name: "Kim Lee", english_learner: true, grade: 1)}
 
           visit "/schools/#{school_1.id}"
   
-          expect(page).to have_link(href="/schools">School Index)
+          expect(page).to have_link(href:"/schools")
         end
       end
     end
 
     describe "user story 10" do
+      let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
+
+      let!(:student_1) {Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)}
+      let!(:student_2) {Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)}
+      let!(:student_3) {Student.create!(school: school_1, name: "Kim Lee", english_learner: true, grade: 1)}
       describe "When I visit '/schools/:id'" do
         it "see a link at the top of the page that takes me to the School's `child_table_name` page" do
-          let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
-  
-          let!(:student_1) {Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)}
-          let!(:student_2) {Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)}
-          let!(:student_3) {Student.create!(school: school_1, name: "Kim Lee", english_learner: true, grade: 1)}
 
           visit "/schools/#{school_1.id}"
   
-          expect(page).to have_link(href="/schools">School Index)
+          expect(page).to have_link("School Student", href:"/schools/#{school_1.id}/students")
         end
       end
     end

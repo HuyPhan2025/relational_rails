@@ -37,7 +37,7 @@ RSpec.describe "Parent Children Index" do
 
             visit "/schools/#{school_1.id}/students"
     
-            expect(page).to have_link(href="/students">Student Index)
+            expect(page).to have_link(href:"/students")
           end
         end
       end
@@ -52,7 +52,7 @@ RSpec.describe "Parent Children Index" do
 
             visit "/schools/#{school_1.id}/students"
     
-            expect(page).to have_link(href="/schools">School Index)
+            expect(page).to have_link(href:"/schools")
           end
         end
       end

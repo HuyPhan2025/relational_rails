@@ -23,7 +23,7 @@ RSpec.describe "Student Show page" do
         student_2 = Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)
         visit "/students/#{student_1.id}"
 
-        expect(page).to have_link(href="/students">Student Index)
+        expect(page).to have_link(href:"/students")
       end
 
       it "see a link at the top of the page that takes me to the School Index" do
@@ -33,7 +33,7 @@ RSpec.describe "Student Show page" do
         student_2 = Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)
         visit "/students/#{student_1.id}"
 
-        expect(page).to have_link(href="/schools">School Index)
+        expect(page).to have_link(href:"/schools")
       end
     end
   end

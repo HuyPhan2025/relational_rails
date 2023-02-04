@@ -22,13 +22,13 @@ RSpec.describe 'Student Index page' do
       it "see a link at the top of the page that takes me to the Student Index" do
         visit "/students/"
 
-        expect(page).to have_link(href="/students">Student Index)
+        expect(page).to have_link(href:"/students")
       end
 
       it "see a link at the top of the page that takes me to the School Index" do
         visit "/students/"
 
-        expect(page).to have_link(href="/schools">School Index)
+        expect(page).to have_link(href:"/schools")
       end
     end
   end
