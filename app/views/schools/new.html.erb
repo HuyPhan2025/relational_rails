@@ -1,0 +1,9 @@
+<%= form_with url: '/schools', method: :post, local: true do |form| %>
+  <%= form.label :name, "Name" %>
+  <%= form.text_field :name %>
+  <%= form.label :esl_program, "ESL Program" %>
+  <%= form.text_field :esl_program %>
+  <%= form.label :tuition, "Tuition" %>
+  <%= form.text_field :tuition %>
+  <%= form.submit "Create School"%>
+<% end %>
