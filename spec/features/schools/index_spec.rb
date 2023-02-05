@@ -23,8 +23,8 @@ RSpec.describe "School Index Page", type: :feature do
       it "When I visit school index I see" do   
         visit "/schools"
 
-        expect(school_2.name).to appear_before(school_1.name)
-        expect(school_1.name).to appear_before(school_3.name)
+        expect(school_1.name).to appear_before(school_2.name)
+        expect(school_2.name).to appear_before(school_3.name)
         expect(page).to have_content(school_1.created_at)
         expect(page).to have_content(school_2.created_at)
         expect(page).to have_content(school_3.created_at)
@@ -50,26 +50,38 @@ RSpec.describe "School Index Page", type: :feature do
       end
     end
   end
-end
 
+  describe "user story 11" do
+    describe "When I visit '/schools'" do
+      it "I see a link to create a new school record and click link to go to new page" do
+        visit "/schools"
 
-RSpec.describe "School Index Page", type: :feature do
-  describe "As a user" do
-    let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
-    let!(:school_2) { School.create!(name: "Walnut Hill", esl_program: true, tuition: 1500, created_at: Time.now - 2.hour) }
-    let!(:school_3) { School.create!(name: "Hogwart", esl_program: true, tuition: 2500) }
-
-    scenario "When I visit '/schools' I see" do
-       
-      visit "/schools"
-
-      expect(page).to have_content(school_1.name)
-      expect(page).to have_content(school_2.name)
-      expect(school_2.name).to appear_before(school_1.name)
-      expect(school_1.name).to appear_before(school_3.name)
-      expect(page).to have_content(school_1.created_at)
-      expect(page).to have_content(school_2.created_at)
-      expect(page).to have_content(school_3.created_at)
-    end   
+        expect(page).to have_link("Create School")
+        click_link("Create School")
+        expect(current_path).to eq("/schools/new")
+      end
+    end
   end
 end
+
+
+# RSpec.describe "School Index Page", type: :feature do
+#   describe "As a user" do
+#     let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
+#     let!(:school_2) { School.create!(name: "Walnut Hill", esl_program: true, tuition: 1500, created_at: Time.now - 2.hour) }
+#     let!(:school_3) { School.create!(name: "Hogwart", esl_program: true, tuition: 2500) }
+
+#     scenario "When I visit '/schools' I see" do
+       
+#       visit "/schools"
+
+#       expect(page).to have_content(school_1.name)
+#       expect(page).to have_content(school_2.name)
+#       expect(school_2.name).to appear_before(school_1.name)
+#       expect(school_1.name).to appear_before(school_3.name)
+#       expect(page).to have_content(school_1.created_at)
+#       expect(page).to have_content(school_2.created_at)
+#       expect(page).to have_content(school_3.created_at)
+#     end   
+#   end
+# end
