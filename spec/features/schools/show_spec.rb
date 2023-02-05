@@ -76,5 +76,19 @@ RSpec.describe 'schools show page' do
         end
       end
     end
+
+    describe "User story 12" do
+      let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
+      describe "When I visit '/schools/:id'" do
+        it "I see a link to update the school 'Update School' and click the link take me to '/parents/:id/edit'" do
+          visit "/schools/#{school_1.id}"
+
+          expect(page).to have_link("Edit School")
+          click_link("Edit School")
+          expect(current_path).to eq("/schools/#{school_1.id}/edit")
+        end
+      end
+    end
+
   end
 end

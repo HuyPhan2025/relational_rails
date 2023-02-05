@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   get '/schools', to: 'schools#index'
   get '/schools/new', to: 'schools#new'
   post '/schools', to: 'schools#create'
+  get '/schools/:id/edit', to: 'schools#edit'
   get '/schools/:id', to: 'schools#show'
   get '/schools/:school_id/students', to: 'schools/students#index'
+  patch '/schools/:id', to: 'schools#update'
+  get '/schools/:school_id/students/new', to: 'schools/students#new'
+  post '/schools/:school_id/students', to: 'schools/students#create'
 
   get '/students', to: 'students#index'
   get '/students/:id', to: 'students#show'
