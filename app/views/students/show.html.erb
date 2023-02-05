@@ -3,7 +3,7 @@
   <li><a href="/students">Student Index</a></li>
 </ul>
 
-<h1><%= @student.name %></h1>
+<h1><%= @student.name %></h1><%= link_to "Edit Student", "/students/#{@student.id}/edit" %>
 
 <p>Grade: <%= @student.grade %></p>
 
