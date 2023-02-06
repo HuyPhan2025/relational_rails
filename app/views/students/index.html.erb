@@ -5,8 +5,10 @@
 <h1>All Students</h1>
 
 <% @students.each do |student| %>
-  <h3><%= student.name %></h3>
-  <p>Grade: <%= student.grade %></p>
-  <p>English Learner: <%= student.english_learner %></p>
-  <br>
+  <div id=<%="#{student.name}"%>>
+    <p><strong><%= student.name %></strong> <%= link_to "Edit Student", "/students/#{student.id}/edit" %></p>
+    <p>Grade: <%= student.grade %></p>
+    <p>English Learner: <%= student.english_learner %></p>
+    <br>
+  </div>
 <% end %>

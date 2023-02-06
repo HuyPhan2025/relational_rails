@@ -30,6 +30,20 @@ RSpec.describe 'Student Index page' do
 
         expect(page).to have_link(href:"/schools")
       end
+
+      it "see a link to edit the Student info" do
+        school_1 = School.create!(name: "Dry Creek", esl_program: false, tuition: 1000)
+
+        student_1 = Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)
+        student_2 = Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)
+        visit "/students/"
+
+        within "#John" do
+          expect(page).to have_link("Edit Student")
+          click_link("Edit Student")
+        end
+        expect(current_path).to eq("/students/#{student_1.id}/edit")
+      end
     end
   end
 end
