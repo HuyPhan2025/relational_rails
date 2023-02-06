@@ -73,6 +73,24 @@ RSpec.describe "Parent Children Index" do
           end
         end
       end
-    end    
+
+      describe "user story 18" do
+        describe "When I visit '/schools/:school_id/students'" do
+          it "see a link to edit the Student info" do
+            school_1 = School.create!(name: "Dry Creek", esl_program: false, tuition: 1000)
+    
+            student_1 = Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)
+            student_2 = Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)
+            visit "/schools/#{school_1.id}/students"
+    
+            within "#John" do
+              expect(page).to have_link("Edit Student")
+              click_link("Edit Student")
+            end
+            expect(current_path).to eq("/students/#{student_1.id}/edit")
+          end
+        end
+      end
+    end  
   end
 end

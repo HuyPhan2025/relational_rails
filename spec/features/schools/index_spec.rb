@@ -62,6 +62,20 @@ RSpec.describe "School Index Page", type: :feature do
       end
     end
   end
+
+  describe "user story 17" do
+    describe "When I visit '/schools'" do
+    let!(:school_1) { School.create!(name: "Dry Creek", esl_program: false, tuition: 1000, created_at: Time.now - 1.hour) }
+
+      it "I see a link to edit that parent's info next to every school and click the link take me to the edit page" do
+        visit "/schools"
+
+        expect(page).to have_link("Edit School")
+        click_link("Edit School")
+        expect(current_path).to eq("/schools/#{school_1.id}/edit")
+      end
+    end
+  end
 end
 
 
