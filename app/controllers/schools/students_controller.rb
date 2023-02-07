@@ -1,7 +1,11 @@
 class Schools::StudentsController < ApplicationController
   def index
     @school = School.find(params[:school_id])
-    @students = @school.students
+    if params[:sort] == "alpha"
+      @students = @school.students.order_alphabetically
+    else
+      @students = @school.students
+    end
   end
 
   def new

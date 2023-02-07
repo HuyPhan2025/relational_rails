@@ -27,6 +27,8 @@ class SchoolsController < ApplicationController
     redirect_to "/schools/#{@school.id}"
   end
   
+  private 
+  
   def school_params
     params.permit(:name, :esl_program, :tuition)
   end
