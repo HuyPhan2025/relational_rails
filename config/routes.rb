@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   patch '/schools/:id', to: 'schools#update'
   get '/schools/:school_id/students/new', to: 'schools/students#new'
   post '/schools/:school_id/students', to: 'schools/students#create'
+  get '/schools/:school_id/students/filter', to: 'schools/students#filter'
+  delete '/schools/:id', to: 'schools#destroy'
 
   get '/students', to: 'students#index'
   get '/students/:id', to: 'students#show'
   get '/students/:id/edit', to: 'students#edit'
   patch '/students/:id', to: 'students#update'
+  delete '/students/:id', to: 'students#destroy'
 end

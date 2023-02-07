@@ -8,3 +8,5 @@
 <p>Grade: <%= @student.grade %></p>
 
 <p>English Learner: <%= @student.english_learner %></p>
+
+<p><%= link_to "Delete Student", "/students/#{@student.id}", method: :delete %></p>

@@ -26,6 +26,12 @@ class SchoolsController < ApplicationController
     @school.update(school_params)
     redirect_to "/schools/#{@school.id}"
   end
+
+  def destroy
+    school = School.find(params[:id])
+    school.destroy
+    redirect_to "/schools"
+  end
   
   private 
   

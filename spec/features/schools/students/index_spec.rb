@@ -1,10 +1,3 @@
-# User Story 5, Parent Children Index 
-
-# As a visitor
-# When I visit '/parents/:parent_id/child_table_name'
-# Then I see each Child that is associated with that Parent with each Child's attributes
-# (data from each column that is on the child table)
-
 require 'rails_helper'
 
 RSpec.describe "Parent Children Index" do
@@ -121,10 +114,47 @@ RSpec.describe "Parent Children Index" do
             visit "/schools/#{school_1.id}/students"
     
             within "#John" do
-              expect(page).to have_link("Edit Student")
+              expect(page).to have_link("Edit Student", href: "/students/#{student_1.id}/edit")
               click_link("Edit Student")
             end
+
             expect(current_path).to eq("/students/#{student_1.id}/edit")
+          end
+        end
+      end
+
+      describe "user story 21" do
+        describe "When I visit the School's student Index Page" do
+          it "see a form that allows me to input a number value" do
+            school_1 = School.create!(name: "Dry Creek", esl_program: false, tuition: 1000)
+    
+            student_1 = Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)
+            student_2 = Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)
+            visit "/schools/#{school_1.id}/students"
+
+            fill_in("Student Grade", with: 3)
+            click_button("filter")
+
+            expect(current_path).to eq("/schools/#{school_1.id}/students/filter")
+            expect(page).to have_content(student_2.name)
+          end
+        end
+      end
+
+      describe "user story 23" do
+        describe "When I visit the `student` index page" do
+          it "Next to every student, I see a link to delete that student" do
+            school_1 = School.create!(name: "Dry Creek", esl_program: false, tuition: 1000)
+    
+            student_1 = Student.create!(school: school_1, name: "John Wick", english_learner: false, grade: 2)
+            student_2 = Student.create!(school: school_1, name: "Sara Barne", english_learner: false, grade: 4)
+            visit "/schools/#{school_1.id}/students"
+
+            expect(page).to have_link("Delete Student #{student_1.name}")
+            click_link("Delete Student #{student_1.name}")
+            expect(current_path).to eq("/students")
+            expect(page).to have_content(student_2.name)
+            expect(page).to_not have_content(student_1.name)
           end
         end
       end

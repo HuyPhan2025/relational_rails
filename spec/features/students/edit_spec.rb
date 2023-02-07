@@ -24,6 +24,4 @@ RSpec.describe 'User story 14' do
     expect(page).to have_content("English Learner: true")
     expect(page).to have_content("Grade: 3")
   end
-
-
 end

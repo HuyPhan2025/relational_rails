@@ -18,5 +18,8 @@ RSpec.describe Student, type: :model do
       expect(Student.order_alphabetically.to_a).to eq([student_1, student_3, student_2])
     end
 
+    it "can filter students by grade" do
+      expect(Student.filter_student(3).to_a).to eq([student_2])
+    end
   end
 end
