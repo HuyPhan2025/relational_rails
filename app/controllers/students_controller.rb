@@ -1,6 +1,10 @@
 class StudentsController < ApplicationController
-  def index
-    @students = Student.all
+  def index   
+    if params[:filter] == "esl"
+      @students = Student.display_true 
+    else 
+      @students = Student.all
+    end
   end
 
   def show
@@ -17,6 +21,8 @@ class StudentsController < ApplicationController
     redirect_to "/students/#{@student.id}"
   end
 
+  private
+  
   def student_params
     params.permit(:name, :english_learner, :grade)
   end
