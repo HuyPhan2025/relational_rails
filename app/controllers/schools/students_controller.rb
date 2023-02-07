@@ -5,7 +5,7 @@ class Schools::StudentsController < ApplicationController
       @students = @school.students.order_alphabetically
     else
       @students = @school.students
-    end
+    end   
   end
 
   def new
@@ -17,6 +17,14 @@ class Schools::StudentsController < ApplicationController
     student = school.students.create!(student_params)
     redirect_to "/schools/#{school.id}/students"
   end
+
+  def filter
+    @school = School.find(params[:school_id])
+    @students = @school.students.filter_student(params[:grade])
+    render 'index'
+  end
+
+  private
 
   def student_params
     params.permit(:name, :english_learner, :grade)

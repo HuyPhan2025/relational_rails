@@ -1,11 +1,11 @@
 <ul>
   <li><a href="/schools">School Index</a></li>
   <li><a href="/students">Student Index</a></li>
-  <%= link_to "Create School", "/schools/new" %>
+  <li><%= link_to "Create School", "/schools/new" %></li>
 </ul>
 <h1>All Schools</h1> 
 
 <% @schools.each do |school| %>
-  <p><strong><%= school.name %></strong> <%= link_to "Edit School", "/schools/#{school.id}/edit" %> <%= school.created_at %></p>
+  <p><strong><%= school.name %></strong> <%= link_to "Edit School", "/schools/#{school.id}/edit" %> <%= link_to "Delete School #{school.name}", "/schools/#{school.id}", method: :delete %> <%= school.created_at %></p> 
   <p><%= school.id %></p>
 <% end %>

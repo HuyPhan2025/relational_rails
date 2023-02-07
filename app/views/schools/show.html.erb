@@ -10,3 +10,5 @@
 <p>Tuition: <%= @school.tuition %></p>
 
 <p>Number of students: <%= @student_count %></p>
+
+<p><%= link_to "Delete School", "/schools/#{@school.id}", method: :delete %></p>

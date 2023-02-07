@@ -76,6 +76,22 @@ RSpec.describe "School Index Page", type: :feature do
       end
     end
   end
+
+  describe "user story 22" do
+    describe "When I visit '/schools'" do
+      it "Next to every parent, I see a link to delete that parent" do
+        school_1 = School.create!(name: "Dry Creek", esl_program: true, tuition: 1000, created_at: Time.now - 1.hour)
+        school_2 = School.create!(name: "Walnut Hill", esl_program: true, tuition: 1500,created_at: Time.now - 2.hour)
+        visit "/schools"
+
+        expect(page).to have_link("Delete School #{school_1.name}")
+        click_link("Delete School #{school_1.name}")
+        expect(current_path).to eq("/schools")
+        expect(page).to have_content(school_2.name)
+        expect(page).to_not have_content(school_1.name)
+      end
+    end
+  end
 end
 
 

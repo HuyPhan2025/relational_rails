@@ -1,18 +1,23 @@
 <ul>
   <li><a href="/schools">School Index</a></li>
   <li><a href="/students">Student Index</a></li>
-  <%= link_to "Create Student", "/schools/#{@school.id}/students/new" %>
+  <li><%= link_to "Create Student", "/schools/#{@school.id}/students/new" %></li>
 </ul>
 <h1><%= @school.name %></h1>
 <p>Students: </p>
 <% @students.each do |student| %>
   <div id=<%="#{student.name}"%>>
-    <p><strong><%= student.name %></strong> <%= link_to "Edit Student", "/students/#{student.id}/edit" %></p>
+    <p><strong><%= student.name %></strong> <%= link_to "Edit Student", "/students/#{student.id}/edit" %> <%= link_to "Delete Student #{student.name}", "/students/#{student.id}", method: :delete %></p>
     <p>Grade: <%= student.grade %></p>
     <p>English Learner: <%= student.english_learner %></p>
     <br>
   </div>
 <% end %>
 
+<%= form_with url: "/schools/#{@school.id}/students/filter", method: :get, local: true do |form| %>
+  <%= form.label :grade, "Student Grade"%>
+  <%= form.text_field :grade%>
+  <%= form.submit "filter"%>
+<% end %>
 <p><%= link_to "Order Alphabetically", "/schools/#{@school.id}/students?sort=alpha"%>
 

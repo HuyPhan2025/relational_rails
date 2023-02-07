@@ -8,4 +8,8 @@ class Student < ApplicationRecord
   def self.order_alphabetically
     order(:name)
   end
+
+  def self.filter_student(num)
+    Student.where("grade > #{num}")
+  end
 end
